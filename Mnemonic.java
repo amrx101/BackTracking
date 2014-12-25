@@ -27,15 +27,22 @@ public class Mnemonic {
         }
     }
     public static void recMnemonic(String original, int k, int lenSoFar, String soFar){
+        // base case , length of string generated 
+        // equals the length of processed number
         if(k == lenSoFar){
             System.out.println(soFar);
         }
         else{
+            // pick the current digit from the number
             if(original.charAt(lenSoFar) != '1'&& original.charAt(lenSoFar)!= '0'){
                 int key = original.charAt(lenSoFar)-'0';
+                // get the striing for the current didgit
                 String expression = myMap.get(key);
+                // pick each character of the current string 
                 for(int i = 0; i < expression.length(); i++){
+                    // add character from the current string to anser string 
                     String newSoFar = soFar+expression.charAt(i);
+                    // recure to repeat the process
                     recMnemonic(original,k,lenSoFar+1,newSoFar);
                 }
             }
